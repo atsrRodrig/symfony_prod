@@ -1,0 +1,111 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    CreerActeur {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                       Enregistrer un Acteur
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("troiswa_back_acteurs") }}"><i class="fa fa-table"></i>  Acteurs /</a>
+                            <i class="fa fa-table"></i>  CreerUnActeur
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            {#  form(formActeur) #}  <!-- genere tout le formulaire avec les balises ouverture/fermeture etc...
+                                       voir detail cahier à 23/04/2015 et ci dessous -->
+            <div class="col-lg-12">
+                {{ form_start(formActeur, {"attr":{"novalidate":"novalidate"}} ) }}
+
+                    {# form_widget(formActeur.sexe, {"attr":{"class" : "form-control" }} ) #}
+                    {# form_label(formActeur.sexe, null, {"label_attr":{'class' : "label label-default"}} ) #}
+
+                    {{  form_widget(formActeur.sexe ) }}
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            {{ form_errors(formActeur.prenom) }}
+                            {{ form_label(formActeur.prenom, 'Prénom',  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.prenom, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form_errors(formActeur.nom) }}
+                            {{ form_label(formActeur.nom, null,  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.nom, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
+                            {{ form_errors(formActeur.dateNaissance) }}
+                            {{ form_label(formActeur.dateNaissance,'Date de naissance',  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.dateNaissance, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_errors(formActeur.ville) }}
+                            {{ form_label(formActeur.ville, 'Ville',  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.ville, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        {{ form_errors(formActeur.biographie) }}
+                        {{ form_label(formActeur.biographie, 'Biographie',  {"label_attr":{'class' : "label label-default"}} ) }}
+                        {{ form_widget(formActeur.biographie, {"attr":{"class" : "form-control", "rows" : "3" }} ) }}
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-5">
+                            {{ form_errors(formActeur.fichier) }}
+                            {{ form_label(formActeur.fichier, 'Image',  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.fichier, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                        <div class="col-lg-7">
+                            {{ form_errors(formActeur.liaisonFilms) }}
+                            {{ form_label(formActeur.liaisonFilms, 'Films',  {"label_attr":{'class' : "label label-default"}} ) }}
+                            {{ form_widget(formActeur.liaisonFilms, {"attr":{"class" : "form-control"}} ) }}
+                        </div>
+                    </div>
+
+                  {{ form_widget(formActeur.ajouter, {"attr":{"class" : "btn btn-info"}} ) }}
+
+                {{ form_end(formActeur) }}
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

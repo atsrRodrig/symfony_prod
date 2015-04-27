@@ -1,0 +1,84 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    Genres {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Saisie des genres
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("troiswa_back_genres") }}"><i class="fa fa-table"></i>  Genres /</a>
+                            <i class="fa fa-table"></i>  CreerGenre
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <!--{# form(formGenre) #} -->  <!-- genere tout le formulaire avec les balises ouverture/fermeture etc...
+                                           voir detail cahier à 23/04/2015 et ci dessous -->
+
+            {{ form_start(formGenre, {"attr":{"novalidate":"novalidate"}} ) }}
+
+                {% if form_errors(formGenre.type) is not empty %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(formGenre.type) }}
+                    </div>
+                {% endif %}
+
+                {{ form_label(formGenre.type, "Titre" ,  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formGenre.type, {"attr":{"class" : "form-control"}} ) }}
+
+
+                {% if form_errors(formGenre.description) is not empty %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(formGenre.description) }}
+                    </div>
+                {% endif %}
+
+                {{ form_label(formGenre.description, null,  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formGenre.description, {"attr":{"class" : "form-control", "rows" : "3" }} ) }}
+
+
+                {{ form_widget(formGenre.ajouter, {"attr":{"class" : "btn btn-info"}} ) }}
+
+            {{ form_end(formGenre) }}
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

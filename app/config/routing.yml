@@ -1,0 +1,7 @@
+troiswa_back:
+    resource: "@TroiswaBackBundle/Resources/config/routing.yml"  #appelle notre routing.yml
+    prefix:   /
+
+#app:
+ #   resource: "@AppBundle/Controller/"
+ #   type:     annotation

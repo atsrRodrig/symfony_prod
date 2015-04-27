@@ -1,0 +1,117 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    Films {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Les {{ allFilms|length }} films dans la base de données
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <i class="fa fa-table"></i> Films
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <div class="row">
+                <div class="col-lg-9">
+
+                    {% for message in app.session.flashbag.get("success_film") %}
+                        <p class="alert alert-success">{{ message }} </p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get("delete_film") %}
+                        <p class="alert alert-danger">{{ message }} </p>
+                    {% endfor %}
+
+                    <h2>Caracteristiques des Films  <a class="btn btn-xs btn-primary" href="{{ path("troiswa_back_create_film") }}">Ajouter un film</a></h2>
+                    <hr>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Date Réalisation</th>
+                                <th>Note</th>
+                                <th>genre</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {# dump(allFilms) #}
+
+                                {%  for unFilm in allFilms %}
+                                    <tr>
+                                        <td>{{ unFilm.id  }}</td>
+                                        <td>{{ unFilm.titre }}</td>
+                                        <td>{{ unFilm.description }}</td>
+                                        <td>{{ unFilm.dateDeRealisation|date("d/m/Y") }}</td>
+                                        <td>{{ unFilm.note }}</td>
+                                        <td> {{ unFilm.genre.type }}</td>
+                                        <td><img style="width:60px; height: 50px; " src="{{ asset(unFilm.displayImage)}}"></td>
+
+                                        <td>    <a class="btn btn-xs btn-success" href="{{ path('troiswa_back_info_film',{'id': unFilm.id }) }}">Voir</a>
+                                                <a class="btn btn-xs btn-success" href="{{ path('troiswa_back_modify_film',{'id': unFilm.id }) }}">Modifie</a>
+                                                <a class="btn btn-xs btn-danger" href="{{ path('troiswa_back_delete_film',{'id': unFilm.id }) }}">Supprime</a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor  %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <h2>Bootstrap Docs</h2>
+                    <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

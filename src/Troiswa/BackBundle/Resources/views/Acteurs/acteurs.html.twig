@@ -1,0 +1,130 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    Acteurs {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">  <!-- la totalité des acteurs  issus de la pagination -->
+                        Les {{ allActeurs.getTotalItemCount }} acteurs de la base de données
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <i class="fa fa-table"></i> Acteurs
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <div class="row">
+                <div class="col-lg-9">
+
+                    {% for message in app.session.flashbag.get("success_acteur") %}
+                        <p class="alert alert-success">{{ message }} </p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get("delete_acteur") %}
+                        <p class="alert alert-danger">{{ message }} </p>
+                    {% endfor %}
+
+                    <h2>Tous les Acteurs <a class="btn btn-xs btn-primary" href="{{ path("troiswa_back_create_acteur") }}">Ajouter un Acteur</a></h2>
+                    <hr>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+
+
+                                <th>Id</th>
+
+                                <!-- <th>Nom</th> -->
+                                <th>{{ knp_pagination_sortable(allActeurs, 'Nom', 'a.nom') }}</th>
+
+                                <th>Prénom</th>
+                                <!-- <th>Date Naissance</th> -->
+                                <th>{{ knp_pagination_sortable(allActeurs, 'Date naissance', 'a.dateNaissance' ) }}</th>
+                                <th>Civilité</th>
+                                <th>   Actions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {# dump(allActeurs) #}
+
+                                {%  for unActeur in allActeurs %}
+                                    <tr>
+                                        <td>{{ unActeur.id  }}</td>
+                                        <td>{{ unActeur.nom|upper }}</td>
+                                        <td>{{ unActeur.prenom|capitalize }}</td>
+                                        <td>{{ unActeur.dateNaissance|date("d/m/Y") }}</td>
+
+                                        {% if unActeur.sexe == false %}
+                                            <td> Homme </td>
+                                        {% else %}
+                                            <td> Femme </td>
+                                        {% endif %}
+
+                                        <td>    <a class="btn btn-xs btn-success" href="{{ path('troiswa_back_info_acteur',{'id': unActeur.id }) }}">Voir</a>
+                                                <a class="btn btn-xs btn-success" href="{{ path('troiswa_back_modify_acteur',{'id': unActeur.id }) }}">Modifie</a>
+                                                <a class="btn btn-xs btn-danger" href="{{ path('troiswa_back_delete_acteur',{'id': unActeur.id }) }}">Supprime</a>
+                                        </td>
+                                    </tr>
+                                {% endfor  %}
+
+                            </tbody>
+                        </table>
+
+                        {# affiche la pagination  #}
+
+                        {{ knp_pagination_render(allActeurs) }}
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-3">
+                    <h4>Bootstrap Docs</h4>
+                    <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

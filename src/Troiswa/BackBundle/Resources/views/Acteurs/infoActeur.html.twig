@@ -1,0 +1,109 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    InfoActeur {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Information sur un Acteur
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("troiswa_back_acteurs") }}"><i class="fa fa-table"></i>  Acteurs /</a>
+                            <i class="fa fa-table"></i>  UnActeur
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <h2>Acteur selectionné</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Date Naissance</th>
+                                <th>Civilité</th>
+                                <th>Photo</th>
+                                <!--<th>   Actions</th>-->
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            {# dump(unActeur) #}
+
+                                <tr>
+                                    <td>{{ unActeur.id  }}</td>
+                                    <td>{{ unActeur.nom|upper }}</td>
+                                    <td>{{ unActeur.prenom|capitalize }}</td>
+                                    <td>{{ unActeur.dateNaissance|date("d/m/Y") }}</td>
+
+                                    {% if unActeur.sexe == false %}
+                                        <td> Homme </td>
+                                    {% else %}
+                                        <td> Femme </td>
+                                    {% endif %}
+
+                                    <!--<td><img src="{{ asset("images/acteurs/")}}{{ unActeur.image  }}"></td> -->
+
+                                    <td><img src="{{ asset(unActeur.displayImage)}}"></td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h2>Plus d'informations</h2>
+                    <p>Pour les informations complémentaires, visitez <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

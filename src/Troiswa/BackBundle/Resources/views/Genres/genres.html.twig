@@ -1,0 +1,102 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    Genres {{ parent() }}
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Liste des genres
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-table"></i> Genres
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-9">
+
+                    {% for message in app.session.flashbag.get("success_genre") %}
+                        <p class="alert alert-success">{{ message }} </p>
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get("delete_genre") %}
+                        <p class="alert alert-danger">{{ message }} </p>
+                    {% endfor %}
+                    
+                    <h2>Tous les genres <a class="btn btn-xs btn-primary" href="{{ path("troiswa_back_create_genre") }}">Ajouter un Genre</a></h2>
+                    <hr>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            {# dump(allActeurs) #}
+
+                            {%  for unGenre in allGenres %}
+                                <tr>
+                                    <td>{{ unGenre.id  }}</td>
+                                    <td>{{ unGenre.type }}</td>
+                                    <td>{{ unGenre.description }}</td>
+                                    <td><a class="btn btn-xs btn-success" href="{# path('troiswa_back_info_acteurs',{'id': unActeur.id }) #}">Voir</a>
+                                        <a class="btn btn-xs btn-success" href="{{ path("troiswa_back_modify_genre",{'id': unGenre.id }) }}">Modifie</a>
+                                        <a class="btn btn-xs btn-danger" href="{{ path("troiswa_back_delete_genre",{'id': unGenre.id }) }}">Supprime</a>
+                                    </td>
+                                </tr>
+                            {% endfor  %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+                    <h2>Bootstrap Docs</h2>
+                    <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

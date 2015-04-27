@@ -1,0 +1,89 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    ModifierActeur {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Modifier un Acteur
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("troiswa_back_acteurs") }}"><i class="fa fa-table"></i>  Acteurs /</a>
+                            <i class="fa fa-table"></i>  ModifierUnActeur
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            {#  form(formActeur) #}  <!-- genere tout le formulaire avec les balises ouverture/fermeture etc...
+                                       voir detail cahier à 23/04/2015 et ci dessous -->
+
+            {{ form_start(formActeur, {"attr":{"novalidate":"novalidate" }} ) }}
+
+                {{  form_widget(formActeur.sexe ) }}
+
+                {{ form_errors(formActeur.prenom) }}
+                {{ form_label(formActeur.prenom, 'Prénom',  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.prenom, {"attr":{"class" : "form-control"}} ) }}
+
+                {{ form_errors(formActeur.nom) }}
+                {{ form_label(formActeur.nom, null,  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.nom, {"attr":{"class" : "form-control"}} ) }}
+
+                {{ form_errors(formActeur.dateNaissance) }}
+                {{ form_label(formActeur.dateNaissance,'Date de naissance',  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.dateNaissance, {"attr":{"class" : "form-control"}} ) }}
+
+                {{ form_errors(formActeur.ville) }}
+                {{ form_label(formActeur.ville, null,  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.ville, {"attr":{"class" : "form-control"}} ) }}
+
+                {{ form_errors(formActeur.biographie) }}
+                {{ form_label(formActeur.biographie, 'Biographie',  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.biographie, {"attr":{"class" : "form-control", "rows" : "3" }} ) }}
+
+                {{ form_errors(formActeur.image) }}
+                {{ form_label(formActeur.image, 'Image',  {"label_attr":{'class' : "label label-default"}} ) }}
+                {{ form_widget(formActeur.image, {"attr":{"class" : "form-control"}} ) }}
+
+                {{ form_widget(formActeur.modifier, {"attr":{"class" : "btn btn-info"}} ) }}
+
+            {{ form_end(formActeur) }}
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+

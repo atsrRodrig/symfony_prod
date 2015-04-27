@@ -1,0 +1,84 @@
+troiswa_back_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TroiswaBackBundle:Default:index }
+
+troiswa_back_test:    # nom unique de la route
+    path:     /essai  # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Default:try}
+
+         #TroiswaBackBundle=nomspace     #Default=controller   #try=methode du controller
+         # toutes le methodes qui finissent par xxxAction permettent de se balader
+
+troiswa_back_index:    # nom unique de la route vers page dashborad
+    path:     /admin   # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Main:dashboard}
+
+
+
+troiswa_back_acteurs:       # nom unique de la route vers page acteurs
+    path:     /admin/acteurs  # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Acteur:allacteurs}
+
+#TroiswaBackBundle=nomspace     #Acteur=controller   #allacteurs=methode du controller
+
+troiswa_back_info_acteur:            # nom unique de la route vers page information acteurs
+    path:     /admin/acteurs/{id}     # URL DE LA PAGE information avec un paramètre ID à passer qui identifie l'acteur
+    defaults: { _controller:TroiswaBackBundle:Acteur:information}
+    requirements:
+              id: \d+   #  \d chiffres seuls le + veut dire 1 chiffre ou plus sinon uniquement de 0 à 9 autorisés
+
+troiswa_back_create_acteur:               # nom unique de la route vers page acteurs
+    path:     /admin/acteur/creation      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Acteur:creer}
+
+troiswa_back_modify_acteur:                   # nom unique de la route vers page acteurs
+    path:     /admin/acteur/modifier/{id}     # URL DE LA PAGE information avec un paramètre ID à passer qui identifie l'acteur
+    defaults: { _controller:TroiswaBackBundle:Acteur:modifier}
+
+troiswa_back_delete_acteur:               # nom unique de la route vers page acteurs
+    path:     /admin/acteur/supprimer/{id}      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Acteur:supprimer}
+
+
+
+troiswa_back_films:            # nom unique de la route vers page information films
+    path:     /admin/films     # URL DE LA PAGE films
+    defaults: { _controller:TroiswaBackBundle:Film:allFilms}
+
+troiswa_back_info_film:            # nom unique de la route vers page information films
+    path:     /admin/films/{id}     # URL DE LA PAGE information avec un paramètre ID à passer qui identifie l'acteur
+    defaults: { _controller:TroiswaBackBundle:Film:information}
+    requirements:
+              id: \d+   #  \d chiffres seuls le + veut dire 1 chiffre ou plus sinon uniquement de 0 à 9 autorisés
+
+troiswa_back_modify_film:                   # nom unique de la route vers page films
+    path:     /admin/films/modifier/{id}     # URL DE LA PAGE information avec un paramètre ID à passer qui identifie l'acteur
+    defaults: { _controller:TroiswaBackBundle:Film:modifier}
+
+troiswa_back_delete_film:               # nom unique de la route vers page films
+    path:     /admin/films/supprimer/{id}      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Film:supprimer}
+
+troiswa_back_create_film:               # nom unique de la route vers page films
+    path:     /admin/films/creation      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Film:creer}
+
+
+
+troiswa_back_genres:       # nom unique de la route vers page genres
+    path:     /admin/genre  # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Genre:all}
+
+troiswa_back_create_genre:               # nom unique de la route vers page genres
+    path:     /admin/genre/creation      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Genre:creer}
+
+troiswa_back_modify_genre:                   # nom unique de la route vers page genres
+    path:     /admin/genre/modifier/{id}     # URL DE LA PAGE information avec un paramètre ID à passer qui identifie le genre
+    defaults: { _controller:TroiswaBackBundle:Genre:modifier}
+
+troiswa_back_delete_genre:               # nom unique de la route vers page genres
+    path:     /admin/genre/supprimer{id}      # URL DE LA PAGE
+    defaults: { _controller:TroiswaBackBundle:Genre:supprimer}
+
+

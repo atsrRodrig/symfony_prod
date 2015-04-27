@@ -1,0 +1,109 @@
+
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block titre %}
+    CreerFilm {{ parent() }}
+
+{% endblock %}
+
+
+{% block css_s %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+{% block central %}
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 class="page-header">
+                        Saisie d'un film
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{{ path('troiswa_back_index') }}">Retour à l'accueil</a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{ path("troiswa_back_films") }}"><i class="fa fa-table"></i>  Films /</a>
+                            <i class="fa fa-table"></i>  NouveauFilm
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            {# form(formFilm) #}  <!-- genere tout le formulaire avec les balises ouverture/fermeture etc...
+                                       voir detail cahier à 23/04/2015 et ci dessous -->
+
+            <div class="col-lg-12">
+
+                {{ form_start(formFilm, {"attr":{"novalidate":"novalidate"}} ) }}
+
+                {# form_widget(formFilm.sexe, {"attr":{"class" : "form-control" }} ) #}
+                {# form_label(formFilm.sexe, null, {"label_attr":{'class' : "label label-default"}} ) #}
+
+                <div class="col-lg-12">
+                    {{ form_errors(formFilm.titre) }}
+                    {{ form_label(formFilm.titre, 'Titre',  {"label_attr":{'class' : "label label-default"}} ) }}
+                    {{ form_widget(formFilm.titre, {"attr":{"class" : "form-control"}} ) }}
+
+                </div>
+                <div class="col-lg-12">
+                    {{ form_errors(formFilm.description) }}
+                    {{ form_label(formFilm.description, 'Description',  {"label_attr":{'class' : "label label-default"}} ) }}
+                    {{ form_widget(formFilm.description, {"attr":{"class" : "form-control", "rows" : "3" }} ) }}
+                </div>
+                <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        {{ form_errors(formFilm.dateDeRealisation) }}
+                        {{ form_label(formFilm.dateDeRealisation,'Date Réalisation',  {"label_attr":{'class' : "label label-default"}} ) }}
+                        {{ form_widget(formFilm.dateDeRealisation, {"attr":{"class" : "form-control"}} ) }}
+                    </div>
+                    <div class="col-lg-9">
+                        {{ form_errors(formFilm.note) }}
+                        {{ form_label(formFilm.note, 'Note',  {"label_attr":{'class' : "label label-default"}} ) }}
+                        {{ form_widget(formFilm.note, {"attr":{"class" : "form-control"}} ) }}
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="col-lg-4">
+                        {{ form_errors(formFilm.fichier) }}
+                        {{ form_label(formFilm.fichier, 'Image',  {"label_attr":{'class' : "label label-default"}} ) }}
+                        {{ form_widget(formFilm.fichier, {"attr":{"class" : "form-control"}} ) }}
+                    </div>
+                    <div class="col-lg-8">
+                        {{ form_errors(formFilm.genre) }}
+                        {{ form_label(formFilm.genre) }}
+                        {{ form_widget(formFilm.genre, {"attr":{"class" : "form-control"}} ) }}
+                    </div>
+                </div>
+                {{ form_widget(formFilm.ajouter, {"attr":{"class" : "btn btn-info"}} ) }}
+
+                {{ form_end(formFilm) }}
+            </div>
+            
+
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}
+
+
